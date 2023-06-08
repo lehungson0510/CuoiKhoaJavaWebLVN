@@ -1,0 +1,21 @@
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}
+
+i {
+  cursor: pointer;
+}
+
+img {
+  cursor: pointer;
+}
+
+.row  img{
+  box-shadow: 1px 3px 8px #000;
+}
+
+.row  img:hover{
+  box-shadow: 1px 1px 1px #000;
+}

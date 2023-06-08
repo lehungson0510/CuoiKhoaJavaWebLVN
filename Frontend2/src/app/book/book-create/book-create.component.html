@@ -1,0 +1,246 @@
+<h2 class="text-center text-success">Thêm mới sách</h2>
+<form
+  [formGroup]="bookForm"
+  *ngIf="bookForm"
+  (ngSubmit)="submit()"
+  class="container"
+>
+  <div class="d-flex">
+    <div class="me-5 mb-3 w-50">
+      <label for="name" class="form-label fb">Tên sách:</label>
+      <span>
+        <span style="margin-left: 10px;"
+          *ngIf="
+          bookForm.controls['bookName'].invalid &&
+            (bookForm.controls['bookName'].dirty ||
+            bookForm.controls['bookName'].touched)
+          "
+        >
+          <span *ngIf="bookForm.controls['bookName'].errors">
+            <span class="text-danger">Nhập tên!</span>
+          </span>
+        </span>
+      </span>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        aria-describedby="emailHelp"
+        formControlName="bookName"
+      />
+    </div>
+
+    <div class="mb-3 w-50">
+      <label for="im" class="form-label">URL ảnh:</label>
+      <span>
+        <span style="margin-left: 10px;"
+          *ngIf="
+          bookForm.controls['bookImage'].invalid &&
+            (bookForm.controls['bookImage'].dirty ||
+            bookForm.controls['bookImage'].touched)
+          "
+        >
+          <span *ngIf="bookForm.controls['bookImage'].errors">
+            <span class="text-danger">Nhập url ảnh!</span>
+          </span>
+        </span>
+      </span>
+      <input
+        type="text"
+        class="form-control"
+        id="im"
+        aria-describedby="emailHelp"
+        formControlName="bookImage"
+      />
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <div class="mb-3 me-5" style="width: 33%">
+      <label for="pro" class="form-label">Giá:</label>
+      <span>
+        <span style="margin-left: 10px;"
+          *ngIf="
+          bookForm.controls['bookPrice'].invalid &&
+            (bookForm.controls['bookPrice'].dirty ||
+            bookForm.controls['bookPrice'].touched)
+          "
+        >
+          <span *ngIf="bookForm.controls['bookPrice'].errors">
+            <span class="text-danger">Nhập giá và giá > 0!</span>
+          </span>
+        </span>
+      </span>
+      <input
+        [min]="0"
+        type="number"
+        class="form-control"
+        id="pro"
+        aria-describedby="emailHelp"
+        formControlName="bookPrice"
+      />
+    </div>
+
+    <div class="mb-3 me-5" style="width: 33%">
+      <label for="tr" class="form-label">Dịch giả:</label>
+      <!-- <span> -->
+        <!-- <span style="margin-left: 10px;"
+          *ngIf="
+          bookForm.controls['bookTranslator'].invalid &&
+            (bookForm.controls['bookTranslator'].dirty ||
+            bookForm.controls['bookTranslator'].touched)
+          "
+        >
+          <span *ngIf="bookForm.controls['bookPrice'].errors">
+            <span class="text-danger">Nhập dịch giả!</span>
+          </span> -->
+        <!-- </span>
+      </span> -->
+      <input
+        type="text"
+        class="form-control"
+        id="tr"
+        aria-describedby="emailHelp"
+        formControlName="bookTranslator"
+      />
+    </div>
+
+    <div class="mb-3" style="width: 33%">
+      <label for="q" class="form-label">Số trang:</label>
+      <span>
+        <span style="margin-left: 10px;"
+          *ngIf="
+          bookForm.controls['bookTotalPage'].invalid &&
+            (bookForm.controls['bookTotalPage'].dirty ||
+            bookForm.controls['bookTotalPage'].touched)
+          "
+        >
+          <span *ngIf="bookForm.controls['bookTotalPage'].errors">
+            <span class="text-danger">Nhập số trang và số trang > 0!</span>
+          </span>
+        </span>
+      </span>
+      <input
+        [min]="1"
+        type="number"
+        class="form-control"
+        id="q"
+        aria-describedby="emailHelp"
+        formControlName="bookTotalPage"
+      />
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <div class="mb-3 me-5" style="width: 33%">
+      <label for="qu" class="form-label">Số lượng:</label>
+      <span>
+        <span style="margin-left: 10px;"
+          *ngIf="
+          bookForm.controls['bookQuantity'].invalid &&
+            (bookForm.controls['bookQuantity'].dirty ||
+            bookForm.controls['bookQuantity'].touched)
+          "
+        >
+          <span *ngIf="bookForm.controls['bookQuantity'].errors">
+            <span class="text-danger">Nhập số sách và số sách > 0!</span>
+          </span>
+        </span>
+      </span>
+      <input
+        [min]="1"
+        type="number"
+        class="form-control"
+        id="qu"
+        aria-describedby="emailHelp"
+        formControlName="bookQuantity"
+      />
+    </div>
+
+    <div class="mb-3 me-5" style="width: 33%">
+      <label for="da" class="form-label">Ngày xuất bản:</label>
+      <input
+        type="date"
+        class="form-control"
+        id="da"
+        aria-describedby="emailHelp"
+        formControlName="bookPublishDate"
+      />
+    </div>
+
+    <div class="mb-3" style="width: 33%">
+      <label for="sher" class="form-label">Nhà xuất bản:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="sher"
+        aria-describedby="emailHelp"
+        formControlName="bookPublisher"
+      />
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <div class="mb-3 me-5" style="width: 33%">
+      <label for="s" class="form-label">Kích thước:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="s"
+        aria-describedby="emailHelp"
+        formControlName="bookSize"
+      />
+    </div>
+
+    <div class="mb-3 me-5" style="width: 33%">
+      <label for="ca" class="form-label">Thể loại:</label>
+      <select
+        id="ca"
+        formControlName="bookCategoryId"
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option *ngFor="let category of categoryList" [ngValue]="category">
+          {{ category.categoryName }}
+        </option>
+      </select>
+    </div>
+
+    <div class="mb-3" style="width: 33%">
+      <label for="au" class="form-label">Tác giả:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="au"
+        aria-describedby="emailHelp"
+        formControlName="bookAuthor"
+      />
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="pr" class="form-label">Giảm giá:</label>
+    <input
+      [min]="0"
+      type="number"
+      class="form-control"
+      id="pr"
+      aria-describedby="emailHelp"
+      formControlName="bookPromotion"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="con" class="form-label">Nội dung:</label>
+    <textarea
+      rows="5"
+      class="form-control"
+      id="con"
+      aria-describedby="emailHelp"
+      formControlName="bookContent"
+    ></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-info text-white">Thêm mới</button>
+</form>
+<notifier-container></notifier-container>

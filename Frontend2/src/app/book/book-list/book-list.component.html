@@ -1,0 +1,246 @@
+
+<body>
+
+<div class="row p-2 m-0">
+  <div class="col-md-2 col-sm-12">
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button
+            class="accordion-button text-primary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+          >
+            Thể loại
+          </button>
+        </h2>
+        <div
+          id="collapseOne"
+          class="accordion-collapse collapse show"
+          aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <div class="list-group" *ngFor="let category of categoryList">
+              <button type="button" value="{{category.categoryId}}" (click)="searchCategory(category)" class="list-group-item list-group-item-action my-2 ">{{category.categoryName}}
+              </button>
+              <!--              <button type="button" class="list-group-item list-group-item-action  ">Laptop-->
+              <!--                Dell-->
+              <!--              </button>-->
+              <!--              <button type="button" class="list-group-item list-group-item-action  ">Laptop-->
+              <!--                HP-->
+              <!--              </button>-->
+              <!--              <button type="button" class="list-group-item list-group-item-action  " disabled>-->
+              <!--                Laptop Lenovo-->
+              <!--              </button>-->
+            </div>
+          </div>
+        </div>
+      </div>
+<!--      <div class="accordion-item">-->
+<!--        <h2 class="accordion-header" id="headingTwo">-->
+<!--          <button-->
+<!--            class="accordion-button collapsed d-flex justify-content-center "-->
+<!--            type="button"-->
+<!--            data-bs-toggle="collapse"-->
+<!--            data-bs-target="#collapseTwo"-->
+<!--            aria-expanded="false"-->
+<!--            aria-controls="collapseTwo"-->
+<!--          >-->
+<!--            Accordion Item #2-->
+<!--          </button>-->
+<!--        </h2>-->
+<!--        <div-->
+<!--          id="collapseTwo"-->
+<!--          class="accordion-collapse collapse"-->
+<!--          aria-labelledby="headingTwo"-->
+<!--          data-bs-parent="#accordionExample"-->
+<!--        >-->
+<!--          <div class="accordion-body">-->
+<!--            <div class="list-group">-->
+<!--              <button type="button" class="list-group-item list-group-item-action  ">Laptop-->
+<!--                Mac-->
+<!--              </button>-->
+<!--              <button type="button" class="list-group-item list-group-item-action  ">Laptop-->
+<!--                Dell-->
+<!--              </button>-->
+<!--              <button type="button" class="list-group-item list-group-item-action  ">Laptop-->
+<!--                HP-->
+<!--              </button>-->
+<!--              <button type="button" class="list-group-item list-group-item-action  " disabled>-->
+<!--                Laptop Lenovo-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="accordion-item mb-2">-->
+<!--        <h2 class="accordion-header" id="headingThree">-->
+<!--          <button-->
+<!--            class="accordion-button collapsed d-flex justify-content-center "-->
+<!--            type="button"-->
+<!--            data-bs-toggle="collapse"-->
+<!--            data-bs-target="#collapseThree"-->
+<!--            aria-expanded="false"-->
+<!--            aria-controls="collapseThree"-->
+<!--          >-->
+<!--            Accordion Item #3-->
+<!--          </button>-->
+<!--        </h2>-->
+<!--        <div-->
+<!--          id="collapseThree"-->
+<!--          class="accordion-collapse collapse"-->
+<!--          aria-labelledby="headingThree"-->
+<!--          data-bs-parent="#accordionExample"-->
+<!--        >-->
+<!--          <div class="accordion-body">-->
+<!--            <div class="list-group">-->
+<!--              <button type="button" class="list-group-item list-group-item-action  ">Laptop-->
+<!--                Mac-->
+<!--              </button>-->
+<!--              <button type="button" class="list-group-item list-group-item-action  ">Laptop-->
+<!--                Dell-->
+<!--              </button>-->
+<!--              <button type="button" class="list-group-item list-group-item-action  ">Laptop-->
+<!--                HP-->
+<!--              </button>-->
+<!--              <button type="button" class="list-group-item list-group-item-action  " disabled>-->
+<!--                Laptop Lenovo-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+    </div>
+  </div>
+  <div class="col-md-8 col-sm-12">
+
+    <form class="d-flex justify-content-end" >
+      <input
+        class="form-control m-2 my-3"
+        size="30"
+        style="height: 40px; width: auto"
+        type="search"
+        placeholder="Tìm kiếm sách"
+        aria-label="Search"
+        #name
+      />
+      <button (click)="searchName(name.value)" class="btn btn-outline-info my-3" type="submit">
+        <i class="fas fa-search" style="color: #7ccae4;"></i>
+      </button>
+    </form>
+
+    <h2 class="text-center" *ngIf="message!= '' ">{{message}}</h2>
+
+    <div class="row ">
+      <div class="col-lg-3 col-md-6 col-sm-6 mb-2 " *ngFor="let book of bookList">
+        <div class="card p-0" style="min-height:380px">
+          <img [routerLink]="['/detail',book.bookId]" style="height:250px; cursor: pointer" [src]="book.bookImage" class="card-img-top" alt="..."/>
+          <div class="card-body">
+            <p class="card-title" style="font-size: 17px;">{{book.bookName}} </p>
+            <p class="text-warning"
+               style="font-size: 13px">{{book.bookPrice | currency:'VND' }}
+              đ</p>
+            <br>
+            <div style="height: 15px; display: flex; align-items: flex-end;justify-content: space-evenly;">
+              <i [routerLink]="['/update',book.bookId]" class="fas fa-edit fa-lg" style="color: #bba516;height: 20px"></i>
+              <i (click)="deleteForm(book)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="fas fa-trash fa-lg" style="color: #912b2b; height: 20px"></i>
+              <i (click)="addCart(book)" class="fas fa-shopping-cart fa-lg" style="color: #3bc9c7; height: 20px"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--      <div class=" col-sm-6 col-lg-4 col-md-6 mb-2">-->
+      <!--        <div class="card p-0" style="height: fit-content">-->
+      <!--          <img src="Bai1-image.jpg" class="card-img-top" alt="..."/>-->
+      <!--          <div class="card-body">-->
+      <!--            <h5 class="card-title">Card Title</h5>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+
+      <!--      <div class="col-sm-6 col-lg-4 col-md-6 mb-2">-->
+      <!--        <div class="card p-0" style="height: fit-content">-->
+      <!--          <img src="Bai1-image.jpg" class="card-img-top" alt="..."/>-->
+      <!--          <div class="card-body">-->
+      <!--            <h5 class="card-title">Card Title</h5>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+
+      <!--      <div class="col-sm-6 col-lg-4 col-md-6 mb-2">-->
+      <!--        <div class="card p-0" style="height: fit-content">-->
+      <!--          <img src="Bai1-image.jpg" class="card-img-top" alt="..."/>-->
+      <!--          <div class="card-body">-->
+      <!--            <h5 class="card-title">Card Title</h5>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+
+      <!--      <div class="col-sm-6 col-lg-4 col-md-6 mb-2">-->
+      <!--        <div class="card p-0" style="height: fit-content">-->
+      <!--          <img src="Bai1-image.jpg" class="card-img-top" alt="..."/>-->
+      <!--          <div class="card-body">-->
+      <!--            <h5 class="card-title">Card Title</h5>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+
+      <!--      <div class="col-sm-6 col-lg-4 col-md-6 mb-2">-->
+      <!--        <div class="card p-0" style="height: fit-content">-->
+      <!--          <img src="Bai1-image.jpg" class="card-img-top" alt="..."/>-->
+      <!--          <div class="card-body">-->
+      <!--            <h5 class="card-title">Card Title</h5>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
+    </div>
+  </div>
+
+  <div class="col-md-2 col-sm-12">
+    <div class="row">
+      <div class="col-md-12 col-sm-6">
+        <div
+          class="bg-light mb-4 d-flex justify-content-center align-items-center"
+          style="height: 200px; border-radius: 8px"
+        >
+          ADS
+        </div>
+      </div>
+
+      <div class="col-md-12 col-sm-6">
+        <div
+          class="bg-light d-flex justify-content-center align-items-center"
+          style="height: 200px; border-radius: 8px"
+        >
+          ADS
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xác nhận</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có muốn xóa sách <span class="text-danger">{{bookDelete.bookName}}</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="delete(bookDelete.bookId)">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>
+<notifier-container></notifier-container>

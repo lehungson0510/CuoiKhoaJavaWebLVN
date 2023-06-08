@@ -1,0 +1,49 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.list-group-item:hover {
+  background: #3bc9c7;
+  color: wheat;
+}
+
+.px-2:hover, i:hover {
+  color: greenyellow;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 860px) and (min-width: 768px){
+  .list-group-item{
+    padding: 3px;
+    margin: 0;
+  }
+}
+
+.card-title{
+  font-size:16px;
+}
+
+.card{
+  max-height: 350px;
+}
+
+i {
+  cursor: pointer;
+}
+
+img {
+  cursor: pointer;
+}
+
+.card:hover{
+  box-shadow: 1px 3px 8px #000;
+}
+
+/* ::-webkit-scrollbar {
+  display: none;
+} */

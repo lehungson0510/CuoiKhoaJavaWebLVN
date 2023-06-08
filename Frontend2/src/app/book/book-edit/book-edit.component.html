@@ -1,0 +1,167 @@
+<h2 class="text-center text-success">Cập nhật sách</h2>
+
+<form [formGroup]="bookForm" *ngIf="bookForm" (ngSubmit)="submit(idBook)" class="container">
+
+  <div class="d-flex">
+    <div class="me-5 mb-3 w-50">
+      <label for="name" class="form-label fb">Tên:</label>
+      <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
+             formControlName="bookName">
+    </div>
+
+    <div class="mb-3 w-50">
+      <label for="im" class="form-label">URL ảnh:</label>
+      <input type="text" class="form-control" id="im" aria-describedby="emailHelp"
+             formControlName="bookImage">
+    </div>
+  </div>
+
+  <div class="d-flex ">
+    <div class="mb-3 me-5" style="width: 33%;">
+      <label for="pro" class="form-label">Giá:</label>
+      <input [min]="0" type="number" class="form-control" id="pro" aria-describedby="emailHelp"
+             formControlName="bookPrice">
+    </div>
+
+    <div class="mb-3 me-5" style="width: 33%;">
+      <label for="tr" class="form-label">Dịch giả:</label>
+      <input type="text" class="form-control" id="tr" aria-describedby="emailHelp"
+             formControlName="bookTranslator">
+    </div>
+
+    <div class="mb-3" style="width: 33%;">
+      <label for="q" class="form-label">Số trang:</label>
+      <input [min]="1" type="number" class="form-control" id="q" aria-describedby="emailHelp"
+             formControlName="bookTotalPage">
+    </div>
+  </div>
+
+
+  <div class="d-flex">
+    <div class="mb-3 me-5" style="width: 33%">
+      <label for="qu" class="form-label">Số lượng:</label>
+      <input [min]="1" type="number" class="form-control" id="qu" aria-describedby="emailHelp"
+             formControlName="bookQuantity">
+    </div>
+
+    <div class="mb-3 me-5" style="width: 33%">
+      <label for="da" class="form-label">Ngày xuất bản:</label>
+      <input type="date" class="form-control" id="da" aria-describedby="emailHelp"
+             formControlName="bookPublishDate">
+    </div>
+
+    <div class="mb-3" style="width: 33%">
+      <label for="sher" class="form-label">Nhà xuất bản:</label>
+      <input type="text" class="form-control" id="sher" aria-describedby="emailHelp"
+             formControlName="bookPublisher">
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <div class="mb-3 me-5" style="width: 33%;">
+      <label for="s" class="form-label">Kích thước:</label>
+      <input type="text" class="form-control" id="s" aria-describedby="emailHelp"
+             formControlName="bookSize">
+    </div>
+
+    <div class="mb-3 me-5" style="width: 33%">
+      <label for="ca" class="form-label">Thể loại:</label>
+      <select id="ca" [compareWith]="compare" formControlName="bookCategoryId" class="form-select" aria-label="Default select example">
+        <option [selected]="bookEdit.bookCategoryId === category" *ngFor="let category of categoryList" [ngValue]="category">{{category.categoryName}}</option>
+      </select>
+    </div>
+
+    <div class="mb-3" style="width: 33%;">
+      <label for="au" class="form-label">Tác giả:</label>
+      <input type="text" class="form-control" id="au" aria-describedby="emailHelp"
+             formControlName="bookAuthor">
+    </div>
+  </div>
+
+
+  <div class="mb-3">
+    <label for="pr" class="form-label">Giảm giá:</label>
+    <input [min]="0" type="number" class="form-control" id="pr" aria-describedby="emailHelp"
+           formControlName="bookPromotion">
+  </div>
+
+  <div class="mb-3">
+    <label for="con" class="form-label">Nội dung:</label>
+    <textarea rows="5" class="form-control" id="con" aria-describedby="emailHelp"
+              formControlName="bookContent"></textarea>
+  </div>
+
+
+
+<!--  <div class="mb-3">-->
+<!--    <label for="exampleInputEmail1" class="form-label">Tên:</label>-->
+<!--    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="bookName">-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+<!--    <label  for="exampleInputEmail1" class="form-label">URL ảnh:</label>-->
+<!--    <input  type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="bookImage">-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+<!--    <label for="exampleInputEmail1" class="form-label">Nội dung:</label>-->
+<!--    <textarea rows="5" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="bookContent"></textarea>-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+<!--    <label for="exampleInputEmail1" class="form-label">Giá:</label>-->
+<!--    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="bookPrice">-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+<!--    <label for="exampleInputEmail1" class="form-label">Dịch giả:</label>-->
+<!--    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="bookTranslator">-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+<!--    <label for="exampleInputEmail1" class="form-label">Số trang:</label>-->
+<!--    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="bookTotalPage">-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+<!--    <label for="exampleInputEmail1" class="form-label">Kích thước:</label>-->
+<!--    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="bookSize">-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+<!--    <label for="exampleInputEmail1" class="form-label">Ngày xuất bản:</label>-->
+<!--    <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="bookPublishDate">-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+<!--    <label for="exampleInputEmail1" class="form-label">Số lượng:</label>-->
+<!--    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName = "bookQuantity">-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+<!--    <label for="exampleInputEmail1" class="form-label">Nhà xuất bản:</label>-->
+<!--    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="bookPublisher">-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+<!--    <label for="exampleInputEmail1" class="form-label">Thể loại:</label>-->
+<!--    <select [compareWith]="compare" [(ngModel)]="bookEdit.bookCategoryId" formControlName="bookCategoryId" class="form-select" aria-label="Default select example">-->
+<!--      <option [selected]="bookEdit.bookCategoryId === category" *ngFor="let category of categoryList" [ngValue]="category">{{category.categoryName}}</option>-->
+<!--    </select>-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+<!--    <label for="exampleInputEmail1" class="form-label">Tác giả:</label>-->
+<!--    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="bookAuthor">-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+<!--    <label for="exampleInputEmail1" class="form-label">Giảm giá:</label>-->
+<!--    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="bookPromotion">-->
+<!--  </div>-->
+
+  <button type="submit" class="btn btn-info text-white">Cập nhật</button>
+</form>
+
+
+

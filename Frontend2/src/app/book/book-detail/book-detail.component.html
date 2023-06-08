@@ -1,0 +1,27 @@
+<h2 class="text-success text-center">Chi tiết sách</h2>
+<div class="card mb-3 container-fluid">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img [src]=bookDetail.bookImage class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title text-center" style="font-size: 20px;text-transform: uppercase">{{bookDetail.bookName}}
+          <i  (click)="addCart(bookDetail)" class="fas fa-shopping-cart fa-lg" style="color: #3bc9c7; height: 20px"></i>
+        </h5>
+
+        <p class="card-text">Giá: <small class="text-muted">{{bookDetail.bookPrice | currency:'VND' }}đ</small></p>
+        <p class="card-text">Dịch giả: <small class="text-muted">{{bookDetail.bookTranslator}}</small></p>
+        <p class="card-text">Số trang: <small class="text-muted">{{bookDetail.bookTotalPage}}</small></p>
+        <p class="card-text">Kích thước: <small class="text-muted">{{bookDetail.bookSize}}</small></p>
+        <p class="card-text">Ngày phát hành: <small class="text-muted">{{bookDetail.bookPublishDate}}</small></p>
+        <p class="card-text">Nhà sản xuất: <small class="text-muted">{{bookDetail.bookPublisher}}</small></p>
+        <p class="card-text">Số lượng: <small class="text-muted">{{bookDetail.bookQuantity}}</small></p>
+        <p class="card-text">Thể loại: <small class="text-muted">{{bookDetail.bookCategoryId?.categoryName}}</small></p>
+        <p class="card-text">Tác giả: <small class="text-muted">{{bookDetail.bookAuthor}}</small></p>
+        <p class="card-text content">Tóm tắt nội dung: <small class="text-muted">{{bookDetail.bookContent}}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+<notifier-container></notifier-container>
